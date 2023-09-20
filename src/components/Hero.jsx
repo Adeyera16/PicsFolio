@@ -1,13 +1,13 @@
 import React from 'react'
-import image from '../assets/login.jpg';
+import background from '../assets/background.jpg';
 
 const Hero = () => {
   return (
     <div className='mt-[5rem]  h-screen'
     style={{
-        background: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),url(${image})`,
+        background: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url(${background})`,
         width: '100%',
-        backgroundSize: 'contain',
+        backgroundSize: 'cover',
     }}>
         <div className='flex flex-col justify-center items-center h-full'>
          <h1 className='text-[#3d85d4] italic font-extrabold text-3xl'>PicsFolio</h1>
