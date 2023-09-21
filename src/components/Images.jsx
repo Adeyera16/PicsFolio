@@ -60,7 +60,7 @@ const Images = () => {
     <div className='mt-[5rem]'>
       <h1 className='gradient__text font-bold text-3xl text-center'>Gallery</h1>
       <SearchBar searchQuery={searchQuery} onSearchChange={handleSearchChange} />
-      <div className='grid md:grid-cols-4 p-[3rem] image-container' ref={containerRef}>
+      <div className='grid justify-center md:grid-cols-4 p-[3rem] image-container' ref={containerRef}>
         {filteredImages.map((item, index) => (
           <div
             key={item.id}

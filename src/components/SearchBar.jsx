@@ -6,7 +6,7 @@ const SearchBar = ({ searchQuery, onSearchChange }) => {
       <input
         type="text"
         placeholder='search by color, man, woman or nature'
-        className='mx-4 w-full md:w-[25rem] outline-none border-2 border-gray-400 p-2 rounded-md'
+        className='mx-4 w-[25rem] outline-none border-2 border-gray-400 p-2 rounded-md'
         value={searchQuery}
         onChange={onSearchChange}
       />

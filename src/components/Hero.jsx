@@ -11,7 +11,7 @@ const Hero = () => {
     }}>
         <div className='flex flex-col justify-center w-[30rem] h-full p-[2rem]'>
          <h1 className='gradient__text font-bold text-3xl'>PicsFolio</h1>
-         <p className=' text-white text-xl py-5'>PicsFolio is an image gallery website that showcases a variety of images. One of its standout features is the drag-and-drop functionality, allowing you to effortlessly rearrange images to your liking. Enjoy your exploration!</p>
+         <p className=' text-white  text-md py-5'>PicsFolio is an image gallery website that showcases a variety of images. One of its standout features is the drag-and-drop functionality, allowing you to effortlessly rearrange images to your liking. Enjoy your exploration!</p>
          <button className=' bg-white text-black p-2 rounded-md w-[8rem]'>Go to Gallery</button>
         </div>
     </div>

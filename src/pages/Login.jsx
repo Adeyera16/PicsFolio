@@ -70,9 +70,9 @@ const Login = ({ onLogin }) => {
   return (
     <section>
       <div className="flex">
-        <img src={image} alt="login image" className="w-[50rem] h-screen" />
+        <img src={image} alt="login image" className="hidden md:block w-[50rem] h-screen" />
         <div className="flex flex-col justify-center">
-          <form className=" w-[40rem] text-center">
+          <form className=" w-full items-center mx-[2rem] md:mx-[1rem] md:w-[40rem] text-center flex flex-col h-screen justify-center">
             <h1 className="font-bold text-2xl italic text-[#3d85d4]">
               PicsFolio
             </h1>
