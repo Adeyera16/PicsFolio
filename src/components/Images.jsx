@@ -48,6 +48,32 @@ const Images = () => {
     }
   };
 
+  const handleTouchStart = (e, index) => {
+    e.preventDefault(); // Prevent default touch behavior (like scrolling)
+
+    const mouseEvent = new MouseEvent('mousedown', {
+      clientX: e.touches[0].clientX,
+      clientY: e.touches[0].clientY,
+    });
+    handleDragStart(mouseEvent, index);
+  };
+
+  const handleTouchMove = (e, index) => {
+    e.preventDefault(); // Prevent default touch behavior (like scrolling)
+
+    const mouseEvent = new MouseEvent('mousemove', {
+      clientX: e.touches[0].clientX,
+      clientY: e.touches[0].clientY,
+    });
+    handleDragOver(mouseEvent, index);
+  };
+
+  const handleTouchEnd = (e) => {
+    e.preventDefault(); // Prevent default touch behavior (like scrolling)
+
+    handleDragEnd();
+  };
+
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
   };
@@ -68,6 +94,9 @@ const Images = () => {
             onDragStart={(e) => handleDragStart(e, index)}
             onDragOver={(e) => handleDragOver(e, index)}
             onDragEnd={handleDragEnd}
+            onTouchStart={(e) => handleTouchStart(e, index)}
+            onTouchMove={(e) => handleTouchMove(e, index)}
+            onTouchEnd={handleTouchEnd}
             className={`mb-6 cursor-grab ${index === draggedIndex ? 'dragging' : ''}`}
           >
             <img
