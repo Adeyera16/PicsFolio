@@ -1,88 +1,85 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import data from '../data';
-
-const DraggableImage = ({ id, image, tag, handleDragStart }) => {
-  return (
-    <div
-      id={id}
-      draggable={true}
-      onDragStart={handleDragStart}
-      style={{
-        cursor: 'move',
-        marginBottom: '1rem',
-      }}
-    >
-      <img src={image} alt={tag} className='w-[15rem] h-[15rem] object-cover' />
-    </div>
-  );
-};
-
-const DroppableZone = ({ handleDrop }) => {
-  const handleDragOver = (e) => {
-    e.preventDefault();
-  };
-
-  const handleDropEvent = (e) => {
-    e.preventDefault();
-    handleDrop(e);
-  };
-
-  return (
-    <div
-      onDragOver={handleDragOver}
-      onDrop={handleDropEvent}
-      style={{
-        border: '2px dashed #ccc',
-        minHeight: '15rem',
-        padding: '1rem',
-        marginBottom: '1rem',
-      }}
-    >
-      Drop Zone
-    </div>
-  );
-};
+import SearchBar from './SearchBar';
 
 const Images = () => {
-  const [imageOrder, setImageOrder] = useState(data.map(item => item.id));
+  const [imageData, setImageData] = useState(data);
+  const [draggedIndex, setDraggedIndex] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
+  const containerRef = useRef();
 
-  const handleDragStart = (e) => {
-    e.dataTransfer.setData('text/plain', e.target.id);
+  const handleDragStart = (e, index) => {
+    e.dataTransfer.setData('index', index);
+    setDraggedIndex(index);
+
+    const dragItem = e.target;
+    dragItem.style.zIndex = '999';
+    dragItem.style.transform = 'scale(1.05)';
   };
 
-  const handleDrop = (e) => {
-    const draggedElementId = e.dataTransfer.getData('text/plain');
-    const draggedElementIndex = imageOrder.findIndex(id => id === draggedElementId);
-    const targetElementIndex = Number(e.target.id);
+  const handleDragOver = (e, index) => {
+    e.preventDefault();
+    if (index !== draggedIndex) {
+      const newImageData = [...imageData];
+      const [draggedItem] = newImageData.splice(draggedIndex, 1);
+      newImageData.splice(index, 0, draggedItem);
+      setImageData(newImageData);
+      setDraggedIndex(index);
 
-    if (draggedElementIndex !== -1 && targetElementIndex !== -1) {
-      const newOrder = [...imageOrder];
-      [newOrder[draggedElementIndex], newOrder[targetElementIndex]] = [newOrder[targetElementIndex], newOrder[draggedElementIndex]];
-      setImageOrder(newOrder);
+      setTimeout(() => {
+        const container = containerRef.current;
+        container.style.transform = `translate(0, 0)`;
+        container.style.transition = 'transform 0.3s ease-in-out';
+      }, 0);
     }
   };
 
+  const handleDragEnd = () => {
+    setDraggedIndex(null);
+
+    const container = containerRef.current;
+    container.style.transform = '';
+    container.style.transition = '';
+
+    const dragItem = container.querySelector('.dragging');
+    if (dragItem) {
+      dragItem.style.zIndex = '';
+      dragItem.style.transform = '';
+    }
+  };
+
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const filteredImages = imageData.filter(item =>
+    item.tag.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
-    <div>
-      <h1 className='text-3xl font-bold text-[#3d85d4] px-[2rem]'>Images</h1>
-      <div className='grid md:grid-cols-4 justify-center p-[2rem] mb-6'>
-        {imageOrder.map((id, index) => {
-          const item = data.find(item => item.id === id);
-          return (
-            <DraggableImage
-              key={id}
-              id={index}
-              image={item.image}
-              tag={item.tag}
-              handleDragStart={handleDragStart}
+    <div className='mt-[5rem]'>
+      <h1 className='gradient__text font-bold text-3xl text-center'>Gallery</h1>
+      <SearchBar searchQuery={searchQuery} onSearchChange={handleSearchChange} />
+      <div className='grid md:grid-cols-4 p-[3rem] image-container' ref={containerRef}>
+        {filteredImages.map((item, index) => (
+          <div
+            key={item.id}
+            draggable
+            onDragStart={(e) => handleDragStart(e, index)}
+            onDragOver={(e) => handleDragOver(e, index)}
+            onDragEnd={handleDragEnd}
+            className={`mb-6 cursor-grab ${index === draggedIndex ? 'dragging' : ''}`}
+          >
+            <img
+              src={item.image}
+              alt={item.tag}
+              className='w-[15rem] h-[15rem] object-cover'
             />
-          );
-        })}
+          </div>
+        ))}
       </div>
-      <DroppableZone handleDrop={handleDrop} />
     </div>
   );
 };
 
 export default Images;
-

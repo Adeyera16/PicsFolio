@@ -19,12 +19,12 @@ const data = [
     {
         id: '1',
         image: women1,
-        tag: "women",
+        tag: "woman",
     },
     {
         id: '2',
         image: men1,
-        tag: "men",
+        tag: "man",
     },
     {
         id: '3',
@@ -39,12 +39,12 @@ const data = [
     {
         id: '5',
         image: men2,
-        tag: "men",
+        tag: "man",
     },
     {
         id: '6',
         image: women2,
-        tag: "women",
+        tag: "woman",
     },
     {
         id: '7',
@@ -69,22 +69,22 @@ const data = [
     {
         id: '11',
         image: women3,
-        tag: "women",
+        tag: "woman",
     },
     {
         id: '12',
         image: men3,
-        tag: "men",
+        tag: "man",
     },
     {
         id: '13',
         image: women4,
-        tag: "women",
+        tag: "woman",
     },
     {
         id: '14',
         image: men4,
-        tag: "men",
+        tag: "man",
     },
     {
         id: '15',
