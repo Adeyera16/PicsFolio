@@ -1,8 +1,2 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This is a website called picsfolio. This website allows users to view and rearrange images. A user can rearrange images by dragging the images on other images. A user can search for images based on there tags. There are only 4 tags on this website, namely, color, man, woman or nature.
+Before a user can have access to this website, a user has to signup, or login for an existing user and a user can logout when they are through with the app.
