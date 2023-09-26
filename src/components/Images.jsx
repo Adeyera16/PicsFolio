@@ -85,6 +85,7 @@ const Images = () => {
   return (
     <div className='mt-[5rem]'>
       <h1 className='gradient__text font-bold text-3xl text-center'>Gallery</h1>
+      <p className='text-center'>These images are grouped into four categories, you can only search an image by typing color, man, woman or nature.</p>
       <SearchBar searchQuery={searchQuery} onSearchChange={handleSearchChange} />
       <div className='grid justify-center md:grid-cols-4 p-[3rem] image-container' ref={containerRef}>
         {filteredImages.map((item, index) => (

@@ -34,7 +34,7 @@ const Signup = () => {
   return (
     <section>
       <div className="flex">
-        <img src={image} alt="login image" className="w-[50rem] h-screen" />
+        <img src={image} alt="login image" className="hidden md:block w-[50rem] h-screen" />
         <div className="flex flex-col justify-center">
           <form action="" className=" w-[40rem] text-center">
             <h1 className="font-bold text-2xl mb-5 text-[#3d85d4]">Sign Up</h1>
